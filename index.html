@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Hồ sơ năng lực</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .cv-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* Header */
+        .cv-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .cv-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .cv-header .title {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.95rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .contact-item a:hover {
+            opacity: 0.8;
+        }
+
+        /* Main Content */
+        .cv-body {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #3498db;
+            border-radius: 50%;
+        }
+
+        /* Summary */
+        .summary p {
+            font-size: 1.05rem;
+            color: #555;
+            text-align: justify;
+        }
+
+        /* Experience */
+        .experience-item {
+            margin-bottom: 25px;
+            padding-left: 20px;
+            border-left: 3px solid #e0e0e0;
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            background: #3498db;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #e0e0e0;
+        }
+
+        .experience-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            gap: 10px;
+        }
+
+        .exp-role {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .exp-date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .exp-company {
+            color: #3498db;
+            font-weight: 500;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .exp-description {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .exp-description ul {
+            margin-top: 8px;
+            margin-left: 20px;
+        }
+
+        .exp-description li {
+            margin-bottom: 4px;
+        }
+
+        /* Education */
+        .education-item {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .education-item:last-child {
+            border-bottom: none;
+        }
+
+        .edu-degree {
+            font-weight: 600;
+            color: #2c3e50;
+            min-width: 200px;
+        }
+
+        .edu-school {
+            color: #3498db;
+            font-weight: 500;
+        }
+
+        .edu-date {
+            color: #7f8c8d;
+            margin-left: auto;
+            white-space: nowrap;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .skill-category h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: #3498db;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Projects */
+        .project-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .project-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .project-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            gap: 10px;
+        }
+
+        .project-name {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.05rem;
+        }
+
+        .project-links a {
+            color: #3498db;
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .project-links a:hover {
+            text-decoration: underline;
+        }
+
+        .project-desc {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tech-tag {
+            background: #e9ecef;
+            color: #495057;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Languages */
+        .languages {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .lang-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lang-name {
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        .lang-level {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .cv-footer {
+            background: #f8f9fa;
+            padding: 20px 40px;
+            border-top: 1px solid #e9ecef;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.85rem;
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+            }
+            .cv-container {
+                margin: 0;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            .cv-header {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .cv-container {
+                margin: 0;
+                border-radius: 0;
+            }
+            .cv-header, .cv-body {
+                padding: 25px;
+            }
+            .cv-header h1 {
+                font-size: 2rem;
+            }
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .exp-header {
+                flex-direction: column;
+            }
+            .education-item {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .edu-date {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <!-- Header -->
+        <header class="cv-header">
+            <h1>Họ và Tên</h1>
+            <p class="title">Vị trí ứng tuyển / Chuyên ngành</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📍</span>
+                    <span>Thành phố, Quốc gia</span>
+                </div>
+                <div class="contact-item">
+                    <span>📞</span>
+                    <a href="tel:+84xxxxxxxxx">+84 xxx xxx xxx</a>
+                </div>
+                <div class="contact-item">
+                    <span>✉️</span>
+                    <a href="mailto:email@example.com">email@example.com</a>
+                </div>
+                <div class="contact-item">
+                    <span>🔗</span>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+                </div>
+                <div class="contact-item">
+                    <span>💻</span>
+                    <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Body -->
+        <main class="cv-body">
+            <!-- Summary -->
+            <section class="section summary">
+                <h2 class="section-title">Mục tiêu nghề nghiệp</h2>
+                <p>
+                    Tóm tắt ngắn gọn về kinh nghiệm, kỹ năng cốt lõi và định hướng phát triển nghề nghiệp của bạn.
+                    Nêu bật giá trị bạn mang lại cho nhà tuyển dụng (3-4 dòng).
+                </p>
+            </section>
+
+            <!-- Experience -->
+            <section class="section experience">
+                <h2 class="section-title">Kinh nghiệm làm việc</h2>
+
+                <article class="experience-item">
+                    <div class="exp-header">
+                        <span class="exp-role">Chức danh công việc</span>
+                        <span class="exp-date">Tháng/Năm – Tháng/Năm</span>
+                    </div>
+                    <span class="exp-company">Tên công ty / Tổ chức</span>
+                    <div class="exp-description">
+                        <p>Mô tả ngắn gọn về trách nhiệm chính và phạm vi công việc.</p>
+                        <ul>
+                            <li>Thành tựu / KPI cụ thể (số liệu, % tăng trưởng, quy mô dự án)</li>
+                            <li>Dự án tiêu biểu / Nhiệm vụ quan trọng đã đảm nhận</li>
+                            <li>Kỹ năng / Công nghệ đã áp dụng thực tế</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="experience-item">
+                    <div class="exp-header">
+                        <span class="exp-role">Chức danh công việc trước đó</span>
+                        <span class="exp-date">Tháng/Năm – Tháng/Năm</span>
+                    </div>
+                    <span class="exp-company">Tên công ty / Tổ chức</span>
+                    <div class="exp-description">
+                        <p>Mô tả trách nhiệm và thành tựu nổi bật.</p>
+                        <ul>
+                            <li>Thành tựu 1</li>
+                            <li>Thành tựu 2</li>
+                            <li>Thành tựu 3</li>
+                        </ul>
+                    </div>
+                </article>
+            </section>
+
+            <!-- Education -->
+            <section class="section education">
+                <h2 class="section-title">Giáo dục</h2>
+
+                <div class="education-item">
+                    <span class="edu-degree">Tên bằng cấp / Chuyên ngành</span>
+                    <span class="edu-school">Tên trường Đại học / Cao đẳng</span>
+                    <span class="edu-date">Năm tốt nghiệp</span>
+                </div>
+
+                <div class="education-item">
+                    <span class="edu-degree">Chứng chỉ / Khóa học chuyên sâu</span>
+                    <span class="edu-school">Tên tổ chức cấp chứng chỉ</span>
+                    <span class="edu-date">Năm cấp</span>
+                </div>
+            </section>
+
+            <!-- Skills -->
+            <section class="section skills">
+                <h2 class="section-title">Kỹ năng</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Lập trình / Framework</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">SQL</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Công cụ / DevOps</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">CI/CD</span>
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Linux</span>
+                            <span class="skill-tag">VS Code</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Kỹ năng mềm</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Teamwork</span>
+                            <span class="skill-tag">Problem Solving</span>
+                            <span class="skill-tag">Communication</span>
+                            <span class="skill-tag">Agile/Scrum</span>
+                            <span class="skill-tag">Time Management</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects -->
+            <section class="section projects">
+                <h2 class="section-title">Dự án tiêu biểu</h2>
+
+                <article class="project-item">
+                    <div class="project-header">
+                        <h3 class="project-name">Tên dự án 1</h3>
+                        <div class="project-links">
+                            <a href="#" target="_blank">Demo</a>
+                            <a href="#" target="_blank">Code</a>
+                        </div>
+                    </div>
+                    <p class="project-desc">Mô tả ngắn gọn về dự án, vấn đề giải quyết, vai trò của bạn.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Docker</span>
+                    </div>
+                </article>
+
+                <article class="project-item">
+                    <div class="project-header">
+                        <h3 class="project-name">Tên dự án 2</h3>
+                        <div class="project-links">
+                            <a href="#" target="_blank">Demo</a>
+                            <a href="#" target="_blank">Code</a>
+                        </div>
+                    </div>
+                    <p class="project-desc">Mô tả ngắn gọn về dự án, công nghệ sử dụng, kết quả đạt được.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">Redis</span>
+                    </div>
+                </article>
+            </section>
+
+            <!-- Languages -->
+            <section class="section languages">
+                <h2 class="section-title">Ngoại ngữ</h2>
+                <div class="languages">
+                    <div class="lang-item">
+                        <span class="lang-name">Tiếng Anh</span>
+                        <span class="lang-level">IELTS 7.0 / TOEIC 900+</span>
+                    </div>
+                    <div class="lang-item">
+                        <span class="lang-name">Tiếng Việt</span>
+                        <span class="lang-level">Ngôn ngữ mẹ đẻ</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="cv-footer">
+            <p>Cập nhật lần cuối: Tháng Năm 2025  •  Được tạo bằng HTML & CSS</p>
+        </footer>
+    </div>
+</body>
+</html>
